@@ -1,0 +1,128 @@
+<svg viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient definitions -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0e27;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#1a1f3a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:1" />
+    </linearGradient>
+    
+    <radialGradient id="glowGradient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.8" />
+      <stop offset="50%" style="stop-color:#2563eb;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#1e40af;stop-opacity:0" />
+    </radialGradient>
+    
+    <linearGradient id="fiberGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#60a5fa;stop-opacity:0.8" />
+      <stop offset="50%" style="stop-color:#93c5fd;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#60a5fa;stop-opacity:0.8" />
+    </linearGradient>
+    
+    <!-- Filter for glow effect -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <!-- Pattern for molecular grid -->
+    <pattern id="molecularGrid" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+      <circle cx="40" cy="40" r="2" fill="#3b82f6" opacity="0.3"/>
+      <line x1="40" y1="40" x2="80" y2="40" stroke="#3b82f6" stroke-width="0.5" opacity="0.2"/>
+      <line x1="40" y1="40" x2="40" y2="80" stroke="#3b82f6" stroke-width="0.5" opacity="0.2"/>
+    </pattern>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1920" height="1080" fill="url(#bgGradient)"/>
+  
+  <!-- Molecular grid overlay -->
+  <rect width="1920" height="1080" fill="url(#molecularGrid)" opacity="0.5"/>
+  
+  <!-- Central glow -->
+  <ellipse cx="960" cy="540" rx="600" ry="400" fill="url(#glowGradient)" opacity="0.3"/>
+  
+  <!-- Polymer chains/nanofibrils -->
+  <!-- First set of intertwined fibers -->
+  <g opacity="0.8">
+    <path d="M 200 300 Q 400 400, 600 350 T 1000 400 Q 1200 450, 1400 400 T 1800 500" 
+          fill="none" stroke="url(#fiberGradient)" stroke-width="3" filter="url(#glow)"/>
+    <path d="M 100 500 Q 300 450, 500 500 T 900 450 Q 1100 400, 1300 450 T 1700 400" 
+          fill="none" stroke="url(#fiberGradient)" stroke-width="2.5" filter="url(#glow)"/>
+    <path d="M 300 600 Q 500 550, 700 600 T 1100 550 Q 1300 600, 1500 550 T 1900 600" 
+          fill="none" stroke="url(#fiberGradient)" stroke-width="3" filter="url(#glow)"/>
+  </g>
+  
+  <!-- Molecular nodes along fibers -->
+  <g opacity="0.9">
+    <circle cx="400" cy="375" r="8" fill="#60a5fa" filter="url(#glow)"/>
+    <circle cx="600" cy="350" r="10" fill="#93c5fd" filter="url(#glow)"/>
+    <circle cx="800" cy="375" r="8" fill="#60a5fa" filter="url(#glow)"/>
+    <circle cx="1000" cy="400" r="12" fill="#dbeafe" filter="url(#glow)"/>
+    <circle cx="1200" cy="425" r="8" fill="#60a5fa" filter="url(#glow)"/>
+    <circle cx="1400" cy="400" r="10" fill="#93c5fd" filter="url(#glow)"/>
+    <circle cx="1600" cy="450" r="8" fill="#60a5fa" filter="url(#glow)"/>
+  </g>
+  
+  <!-- Hexagonal molecular structures -->
+  <g opacity="0.6">
+    <!-- Hexagon 1 -->
+    <g transform="translate(300, 800)">
+      <polygon points="0,-40 35,-20 35,20 0,40 -35,20 -35,-20" 
+               fill="none" stroke="#3b82f6" stroke-width="1.5" filter="url(#glow)"/>
+      <circle cx="0" cy="-40" r="4" fill="#60a5fa"/>
+      <circle cx="35" cy="-20" r="4" fill="#60a5fa"/>
+      <circle cx="35" cy="20" r="4" fill="#60a5fa"/>
+      <circle cx="0" cy="40" r="4" fill="#60a5fa"/>
+      <circle cx="-35" cy="20" r="4" fill="#60a5fa"/>
+      <circle cx="-35" cy="-20" r="4" fill="#60a5fa"/>
+    </g>
+    
+    <!-- Hexagon 2 -->
+    <g transform="translate(1500, 200) scale(1.2)">
+      <polygon points="0,-40 35,-20 35,20 0,40 -35,20 -35,-20" 
+               fill="none" stroke="#3b82f6" stroke-width="1.5" filter="url(#glow)"/>
+      <circle cx="0" cy="-40" r="4" fill="#93c5fd"/>
+      <circle cx="35" cy="-20" r="4" fill="#93c5fd"/>
+      <circle cx="35" cy="20" r="4" fill="#93c5fd"/>
+      <circle cx="0" cy="40" r="4" fill="#93c5fd"/>
+      <circle cx="-35" cy="20" r="4" fill="#93c5fd"/>
+      <circle cx="-35" cy="-20" r="4" fill="#93c5fd"/>
+    </g>
+  </g>
+  
+  <!-- Additional polymer strands in background -->
+  <g opacity="0.4">
+    <path d="M 0 200 Q 200 250, 400 200 T 800 250 Q 1000 200, 1200 250 T 1600 200 Q 1800 250, 1920 200" 
+          fill="none" stroke="#60a5fa" stroke-width="1.5"/>
+    <path d="M 0 700 Q 200 650, 400 700 T 800 650 Q 1000 700, 1200 650 T 1600 700 Q 1800 650, 1920 700" 
+          fill="none" stroke="#60a5fa" stroke-width="1.5"/>
+    <path d="M 0 900 Q 200 850, 400 900 T 800 850 Q 1000 900, 1200 850 T 1600 900 Q 1800 850, 1920 900" 
+          fill="none" stroke="#60a5fa" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Floating particles -->
+  <g opacity="0.5">
+    <circle cx="150" cy="150" r="3" fill="#dbeafe">
+      <animate attributeName="cy" values="150;170;150" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="1750" cy="300" r="4" fill="#93c5fd">
+      <animate attributeName="cy" values="300;280;300" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="900" cy="200" r="3" fill="#60a5fa">
+      <animate attributeName="cy" values="200;220;200" dur="3.5s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="500" cy="800" r="4" fill="#dbeafe">
+      <animate attributeName="cy" values="800;780;800" dur="4s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="1300" cy="700" r="3" fill="#93c5fd">
+      <animate attributeName="cy" values="700;720;700" dur="3s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Subtle overlay gradient for depth -->
+  <rect width="1920" height="1080" fill="url(#bgGradient)" opacity="0.2"/>
+</svg>
