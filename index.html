@@ -177,52 +177,6 @@
             color: #333;
         }
 
-        /* .gallery-image::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.2);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .gallery-item:hover .gallery-image::before {
-            opacity: 1;
-        }
-
-        .gallery-content {
-            padding: 1.5rem;
-        }
-
-        .gallery-content h3 {
-            color: #667eea;
-            margin-bottom: 0.5rem;
-            font-size: 1.2rem;
-        }
-
-        .gallery-content p {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .gallery-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
-
-        .gallery-tag {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-            font-size: 0.75rem;
-        } */
-
         /* Modal for Gallery */
         .modal {
             display: none;
@@ -263,7 +217,81 @@
             color: #667eea;
         }
 
-        /* Updated Study Notes Section */
+        /* Gallery Section Styles - Shared for both galleries */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .gallery-item {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            background: #f8f9ff;
+            aspect-ratio: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .gallery-image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .gallery-image, .gallery-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 1;
+        }
+
+        .gallery-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .gallery-placeholder-icon {
+            font-size: 2rem;
+            opacity: 0.8;
+        }
+
+        /* Notes Section */
         .notes-container {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -296,9 +324,10 @@
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
-            aspect-ratio: 8.5 / 7;  /* Changed - shows about half the height */
+            aspect-ratio: 8.5 / 7;
             background: #f8f9ff;
         }
+
         .note-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
@@ -317,11 +346,11 @@
             object-fit: cover;
             object-position: top;
             transition: opacity 0.3s ease;
-            opacity: 0.4;  /* Add this - makes image initially semi-transparent */
+            opacity: 0.4;
         }
 
         .note-card:hover .note-image {
-            opacity: 1;  /* Change from 0.3 to 1 - makes image fully visible on hover */
+            opacity: 1;
         }
 
         .note-title-overlay {
@@ -331,7 +360,6 @@
             right: 0;
             background: linear-gradient(to top, rgba(102, 126, 234, 0.95), transparent);
             padding: 1.5rem 1rem 1rem;
-            /* transform: translateY(0);  Change - always visible */
             transition: transform 0.3s ease;
         }
 
@@ -342,7 +370,6 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.3);
         }
 
-        /* Fallback for missing images */
         .note-placeholder {
             position: absolute;
             top: 0;
@@ -369,8 +396,6 @@
             font-size: 1rem;
             opacity: 0.9;
         }
-
-        @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
 
         /* Research Highlights */
         .research-grid {
@@ -589,7 +614,8 @@
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#research">Research</a></li>
-                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#research-gallery">Research Gallery</a></li>
+                <li><a href="#personal-gallery">Personal Gallery</a></li>
                 <li><a href="#notes">Study Notes</a></li>
                 <li><a href="#skills">Skills</a></li>
                 <li><a href="#publications">Publications</a></li>
@@ -684,19 +710,19 @@
         </div>
     </section>
 
-    <!-- Gallery Section - Add this after the Research Highlights section and before the Notes section -->
-    <section id="gallery">
+    <!-- Research Gallery Section -->
+    <section id="research-gallery">
         <div class="container">
-            <h2 class="section-title">Gallery</h2>
+            <h2 class="section-title">Research Gallery</h2>
             <p style="text-align: center; color: #666; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
                 A visual collection showcasing key moments, equipment, and results from my research journey in advanced materials science and polymer engineering.
             </p>
             <div class="gallery-grid">
-                <!-- Gallery Item 1 -->
-                <div class="gallery-item" onclick="openModal('gallery1')">
+                <!-- Research Gallery Item 1 -->
+                <div class="gallery-item" onclick="openModal('research1')">
                     <div class="gallery-image-container">
                         <img src="Gallery/Rheometer.jpg" 
-                            alt="Research Image 1" 
+                            alt="Rheometer" 
                             class="gallery-image"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="gallery-placeholder" style="display: none;">
@@ -705,11 +731,11 @@
                     </div>
                 </div>
 
-                <!-- Gallery Item 2 -->
-                <div class="gallery-item" onclick="openModal('gallery2')">
+                <!-- Research Gallery Item 2 -->
+                <div class="gallery-item" onclick="openModal('research2')">
                     <div class="gallery-image-container">
                         <img src="Gallery/DMA.jpeg" 
-                            alt="Research Image 2" 
+                            alt="DMA Equipment" 
                             class="gallery-image"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="gallery-placeholder" style="display: none;">
@@ -718,11 +744,11 @@
                     </div>
                 </div>
 
-                <!-- Gallery Item 3 -->
-                <div class="gallery-item" onclick="openModal('gallery3')">
+                <!-- Research Gallery Item 3 -->
+                <div class="gallery-item" onclick="openModal('research3')">
                     <div class="gallery-image-container">
                         <img src="Gallery/Twin screw extruder.jpg" 
-                            alt="Research Image 3" 
+                            alt="Twin Screw Extruder" 
                             class="gallery-image"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="gallery-placeholder" style="display: none;">
@@ -731,21 +757,25 @@
                     </div>
                 </div>
 
-                <!-- Gallery Item 4 -->
-                <div class="gallery-item" onclick="openModal('gallery4')">
+                <!-- Research Gallery Item 4 -->
+                <div class="gallery-item" onclick="openModal('research4')">
                     <div class="gallery-image-container">
-                        <video width="640" height="480" controls src="Gallery/Stress whitening.mov"></video>
+                        <video class="gallery-video" controls preload="metadata" muted>
+                            <source src="Gallery/Stress whitening.mov" type="video/quicktime">
+                            <source src="Gallery/Stress whitening.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
                         <div class="gallery-placeholder" style="display: none;">
                             <span class="gallery-placeholder-icon">📊</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- Gallery Item 5 -->
-                <div class="gallery-item" onclick="openModal('gallery5')">
+                <!-- Research Gallery Item 5 -->
+                <div class="gallery-item" onclick="openModal('research5')">
                     <div class="gallery-image-container">
                         <img src="Gallery/Screw.jpg" 
-                            alt="Research Image 5" 
+                            alt="Extruder Screw" 
                             class="gallery-image"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="gallery-placeholder" style="display: none;">
@@ -754,11 +784,11 @@
                     </div>
                 </div>
 
-                <!-- Gallery Item 6 -->
-                <div class="gallery-item" onclick="openModal('gallery6')">
+                <!-- Research Gallery Item 6 -->
+                <div class="gallery-item" onclick="openModal('research6')">
                     <div class="gallery-image-container">
                         <img src="Gallery/Cold tensile.jpg" 
-                            alt="Research Image 6" 
+                            alt="Cold Tensile Testing" 
                             class="gallery-image"
                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                         <div class="gallery-placeholder" style="display: none;">
@@ -766,144 +796,126 @@
                         </div>
                     </div>
                 </div>
-                <!-- Gallery Item 7 -->
-                <div class="gallery-item" onclick="openModal('gallery7')">
+
+                <!-- Research Gallery Item 7 -->
+                <div class="gallery-item" onclick="openModal('research7')">
                     <div class="gallery-image-container">
-                        <video width="640" height="480" controls src="Gallery/EPDM-MA grafting.mov"></video>
-                        <div class="gallery-placeholder" style="display: none;"><span class="gallery-placeholder-icon">🧬</span></div>
+                        <video class="gallery-video" controls preload="metadata" muted>
+                            <source src="Gallery/EPDM-MA grafting.mov" type="video/quicktime">
+                            <source src="Gallery/EPDM-MA grafting.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">🧬</span>
+                        </div>
                     </div>
                 </div>
-                <!-- Gallery Item 8 -->
-                <div class="gallery-item" onclick="openModal('gallery8')">
+
+                <!-- Research Gallery Item 8 -->
+                <div class="gallery-item" onclick="openModal('research8')">
                     <div class="gallery-image-container">
-                        <img src="Gallery/Crazing-pre cracked.jpg" alt="Research Image 8" class="gallery-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="gallery-placeholder" style="display: none;"><span class="gallery-placeholder-icon">📈</span></div>
+                        <img src="Gallery/Crazing-pre cracked.jpg" 
+                            alt="Crazing Analysis" 
+                            class="gallery-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">📈</span>
+                        </div>
                     </div>
                 </div>
-                <!-- Gallery Item 9 -->
-                <div class="gallery-item" onclick="openModal('gallery9')">
+
+                <!-- Research Gallery Item 9 -->
+                <div class="gallery-item" onclick="openModal('research9')">
                     <div class="gallery-image-container">
-                        <img src="Gallery/Optical Microscopy.jpg" alt="Research Image 8" class="gallery-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="gallery-placeholder" style="display: none;"><span class="gallery-placeholder-icon">📈</span></div>
+                        <img src="Gallery/Optical Microscopy.jpg" 
+                            alt="Optical Microscopy" 
+                            class="gallery-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">🔬</span>
+                        </div>
                     </div>
                 </div>
-                <!-- Gallery Item 10 -->
-                <div class="gallery-item" onclick="openModal('gallery10')">
+
+                <!-- Research Gallery Item 10 -->
+                <div class="gallery-item" onclick="openModal('research10')">
                     <div class="gallery-image-container">
-                        <img src="Gallery/DSC.jpeg" alt="Research Image 8" class="gallery-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                        <div class="gallery-placeholder" style="display: none;"><span class="gallery-placeholder-icon">📈</span></div>
+                        <img src="Gallery/DSC.jpeg" 
+                            alt="DSC Equipment" 
+                            class="gallery-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">📊</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Gallery Section -->
+    <section id="personal-gallery">
+        <div class="container">
+            <h2 class="section-title">Personal Gallery</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Personal moments, travels, hobbies, and life experiences that shape who I am beyond the laboratory.
+            </p>
+            <div class="gallery-grid">
+                <!-- Personal Gallery Item 1 -->
+                <div class="gallery-item" onclick="openModal('personal1')">
+                    <div class="gallery-image-container">
+                        <img src="Personal/Defense Party.jpeg" 
+                            alt="Personal Photo 1" 
+                            class="gallery-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">📸</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Gallery Item 2 -->
+                <div class="gallery-item" onclick="openModal('personal2')">
+                    <div class="gallery-image-container">
+                        <img src="Personal/Maryam's convocation.jpeg" 
+                            alt="Personal Photo 2" 
+                            class="gallery-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">🌟</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Gallery Item 3 -->
+                <div class="gallery-item" onclick="openModal('personal3')">
+                    <div class="gallery-image-container">
+                        <img src="Personal/Saadman's convocation.jpeg" 
+                            alt="Personal Photo 3" 
+                            class="gallery-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">🎨</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Gallery Item 4 -->
+                <div class="gallery-item" onclick="openModal('personal4')">
+                    <div class="gallery-image-container">
+                        <img src="Personal/Transferring LN2.jpeg" 
+                            alt="Personal Photo 4" 
+                            class="gallery-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">🏔️</span>
+                        </div>
                     </div>
                 </div>
 
             </div>
         </div>
     </section>
-
-    <style>
-    /* Gallery Section Styles */
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0; /* No gaps between frames */
-        margin-top: 2rem;
-    }
-
-    /* Responsive grid adjustments */
-    @media (max-width: 1200px) {
-        .gallery-grid {
-            grid-template-columns: repeat(5, 1fr);
-        }
-    }
-
-    @media (max-width: 900px) {
-        .gallery-grid {
-            grid-template-columns: repeat(4, 1fr);
-        }
-    }
-
-    @media (max-width: 600px) {
-        .gallery-grid {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
-    @media (max-width: 400px) {
-        .gallery-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    .gallery-item {
-        position: relative;
-        cursor: pointer;
-        overflow: hidden;
-        background: #f8f9ff;
-        aspect-ratio: 1; /* Square frames */
-        transition: transform 0.3s ease;
-    }
-
-    .gallery-item:hover {
-        transform: scale(1.05);
-        z-index: 10;
-    }
-
-    .gallery-image-container {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-
-    .gallery-image {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center;
-        /* No opacity changes - images stay at full opacity */
-        opacity: 1;
-        transition: none;
-    }
-
-    /* Fallback for missing images */
-    .gallery-placeholder {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-    }
-
-    .gallery-placeholder-icon {
-        font-size: 2rem;
-        opacity: 0.8;
-    }
-    </style>
-
-    <!-- Add Gallery Modals (sample for first few) -->
-    <!-- <div id="gallery1" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Research Image 1</h2>
-            <img src="Gallery/image-01.jpg" alt="Research Image 1 Full Size" class="modal-image">
-            <p>Description of this research image, experimental setup, or key finding.</p>
-        </div>
-    </div>
-
-    <div id="gallery2" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Research Image 2</h2>
-            <img src="Gallery/image-02.jpg" alt="Research Image 2 Full Size" class="modal-image">
-            <p>Description of this research image, experimental setup, or key finding.</p>
-        </div>
-    </div> -->
-
 
     <!-- Study Notes Section -->
     <section id="notes">
@@ -1306,28 +1318,39 @@
         </div>
     </section>
 
-    </section>
-
-    <!-- Gallery Modals -->
-    <div id="modal6" class="modal">
+    <!-- Research Gallery Modals (samples) -->
+    <div id="research1" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>AI-Driven Particle Packing</h2>
-            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem; margin: 1rem 0;">🌐</div>
-            <h3>Deep Reinforcement Learning Framework:</h3>
-            <p>Multi-agent system that learns to generate particle packings with targeted topological properties including porosity, coordination number, and spatial distribution.</p>
-            <h3>Key Innovations:</h3>
-            <ul>
-                <li>Meta-learning approach for diverse packing objectives</li>
-                <li>Parallel simulation environment for efficient exploration</li>
-                <li>Transfer learning for rapid adaptation to new targets</li>
-                <li>Direct structure-property relationship quantification</li>
-            </ul>
-            <h3>Applications:</h3>
-            <p>This framework enables rational design of particulate materials for catalysis, energy storage, filtration, and composite applications by establishing quantitative relationships between controllable parameters and functional properties.</p>
-            <div class="handwritten-style">
-                <p><em>AI Breakthrough: The challenge was creating a reward function that captures the complex relationship between local particle arrangements and global material properties. Our solution: hierarchical rewards that balance local optimization with global objectives.</em></p>
-            </div>
+            <h2>Rheometer Equipment</h2>
+            <img src="Gallery/Rheometer.jpg" alt="Rheometer" style="width: 100%; border-radius: 10px; margin: 1rem 0;">
+            <p>Advanced rheological analysis equipment used for characterizing viscoelastic properties of polymer nanocomposites and melts.</p>
+        </div>
+    </div>
+
+    <div id="research2" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dynamic Mechanical Analysis (DMA)</h2>
+            <img src="Gallery/DMA.jpeg" alt="DMA Equipment" style="width: 100%; border-radius: 10px; margin: 1rem 0;">
+            <p>DMA equipment for measuring the mechanical properties of polymers as a function of temperature, frequency, and time.</p>
+        </div>
+    </div>
+
+    <!-- Personal Gallery Modals (samples) -->
+    <div id="personal1" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Personal Moment</h2>
+            <p>A glimpse into my life outside the laboratory.</p>
+        </div>
+    </div>
+
+    <div id="personal2" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Personal Experience</h2>
+            <p>Capturing moments that inspire my scientific journey.</p>
         </div>
     </div>
 
@@ -1336,7 +1359,6 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Four Subspaces of Matrices</h2>
-            </div>
         </div>
     </div>
 
@@ -1353,6 +1375,7 @@
             <h2>Derivative as a Linear Transformation</h2>
         </div>
     </div>
+
     <div id="note4" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -1479,12 +1502,12 @@
         // Modal functionality
         window.openModal = function(modalId) {
             document.getElementById(modalId).style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            document.body.style.overflow = 'hidden';
         }
 
         window.closeModal = function(modalId) {
             document.getElementById(modalId).style.display = 'none';
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
+            document.body.style.overflow = 'auto';
         }
 
         // Close modals when clicking the X or outside the modal
@@ -1526,11 +1549,7 @@
             galleryObserver.observe(el);
         });
 
-    </script>
-
-    <script>
         function quickLoad(modalId, folderName, count_start, count_finish) {
-            // Wait a moment for modal to be ready
             setTimeout(function() {
                 const modal = document.getElementById(modalId);
                 if (modal) {
@@ -1540,7 +1559,7 @@
                         for (let i = count_start; i <= count_finish; i++) {
                             const paddedNumber = i.toString().padStart(2, '0');
                             html += `<img src="Notes/${folderName}/page-${paddedNumber}.jpg" 
-                                        alt="RL Page ${i}" 
+                                        alt="Note Page ${i}" 
                                         style="width: 100%; border-radius: 10px;"
                                         onerror="this.style.display='none'">`;
                         }
@@ -1551,7 +1570,7 @@
             }, 100)
         }
 
-        // Call the functions
+        // Load notes content
         quickLoad('note1', '(Linear Algebra) 4 subspaces', 1, 4);
         quickLoad('note2', '(Linear Algebra) SVD', 1, 11);
         quickLoad('note3', '(Linear Algebra) Derivative', 1, 3);
@@ -1565,7 +1584,37 @@
         quickLoad('note12', 'Legrange Method', 1, 19);
         quickLoad('note13', 'Quantum Physics', 1, 23);
 
-    </script>
+        // Video error handling
+        document.querySelectorAll('video').forEach(video => {
+            video.addEventListener('error', function() {
+                const placeholder = this.nextElementSibling;
+                if (placeholder && placeholder.classList.contains('gallery-placeholder')) {
+                    this.style.display = 'none';
+                    placeholder.style.display = 'flex';
+                }
+            });
+            
+            // Try to load video
+            video.addEventListener('loadstart', function() {
+                console.log('Video loading started:', this.src);
+            });
+        });
 
+        // Image error handling for personal gallery (additional debugging)
+        document.querySelectorAll('.gallery-image').forEach(img => {
+            img.addEventListener('load', function() {
+                console.log('Image loaded successfully:', this.src);
+            });
+            
+            img.addEventListener('error', function() {
+                console.log('Image failed to load:', this.src);
+                const placeholder = this.nextElementSibling;
+                if (placeholder && placeholder.classList.contains('gallery-placeholder')) {
+                    this.style.display = 'none';
+                    placeholder.style.display = 'flex';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
