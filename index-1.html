@@ -1,0 +1,1620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amirmehdi(Amir) Salehi, Ph.D. - Materials Scientist & AI Researcher</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #667eea;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease forwards;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.3s forwards;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+            font-weight: 500;
+            color: #f8f9ff;
+        }
+
+        .hero-content .description {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.6s forwards;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+            font-weight: 400;
+            color: #f0f0f0;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease 0.9s forwards;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 0;
+            background: white;
+        }
+
+        section:nth-child(even) {
+            background: #f8f9ff;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        /* Modal for Gallery */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            animation: fadeIn 0.3s;
+        }
+
+        .modal-content {
+            position: relative;
+            background-color: white;
+            margin: 5% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 15px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            position: absolute;
+            right: 20px;
+            top: 10px;
+        }
+
+        .close:hover {
+            color: #667eea;
+        }
+
+        /* Gallery Section Styles - Shared for both galleries */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 0;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .gallery-item {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            background: #f8f9ff;
+            aspect-ratio: 1;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+
+        .gallery-image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .gallery-image, .gallery-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            opacity: 1;
+        }
+
+        .gallery-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .gallery-placeholder-icon {
+            font-size: 2rem;
+            opacity: 0.8;
+        }
+
+        /* Notes Section */
+        .notes-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        @media (max-width: 1200px) {
+            .notes-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .notes-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .notes-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .note-card {
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            aspect-ratio: 8.5 / 7;
+            background: #f8f9ff;
+        }
+
+        .note-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.2);
+        }
+
+        .note-image-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .note-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: top;
+            transition: opacity 0.3s ease;
+            opacity: 0.4;
+        }
+
+        .note-card:hover .note-image {
+            opacity: 1;
+        }
+
+        .note-title-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(102, 126, 234, 0.95), transparent);
+            padding: 1.5rem 1rem 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .note-title-overlay h3 {
+            color: white;
+            font-size: 1.1rem;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .note-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .note-placeholder-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .note-placeholder-title {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Research Highlights */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .research-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .research-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .research-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .research-card .impact {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        /* Skills Matrix */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .skill-category h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        /* Publications */
+        .publication-item {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .publication-item h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-item .journal {
+            color: #667eea;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .publication-item .authors {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* AI Projects */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+        }
+
+        .project-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .project-card .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: rgba(255,255,255,0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .contact-item {
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                display: none;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">Amirmehdi(Amir) Salehi, Ph.D.</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#research-gallery">Research Gallery</a></li>
+                <li><a href="#personal-gallery">Personal Gallery</a></li>
+                <li><a href="#notes">Study Notes</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#projects">AI Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero" style="background-image: url('images/polymer-hero-background.svg');">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Pioneering Polymer Science & Engineering</h1>
+                <p class="subtitle">Polymer Scientist • AI Researcher • Innovation Engineer</p>
+                <p class="description">
+                    Developing next-generation polymer nanocomposites through advanced synthesis, characterization, and processing techniques. 
+                    Pioneering in-situ nanofibrillation technology, chemical crosslinking methodologies, and AI-enhanced materials discovery. 
+                    15+ peer-reviewed publications, 7+ years of polymer research excellence.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#research" class="btn btn-primary">Explore My Research</a>
+                    <a href="#projects" class="btn btn-secondary">View AI Projects</a>
+                    <a href="mailto:a.salehi@mail.utoronto.ca" class="btn btn-secondary">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Highlights -->
+    <section id="research">
+        <div class="container">
+            <h2 class="section-title">Research Highlights</h2>
+            <div class="research-grid">
+                <div class="research-card">
+                    <img src="images/crosslinking.png" alt="Research preview" style="width: 100%; height: 300px; object-fit: contain; border-radius: 10px; margin-bottom: 1rem;">
+                    <h3>Hybrid In-situ Nanofibrillation & Crosslinking of Polymer Composites</h3>
+                    <p>Pioneered innovative techniques across multiple polymer systems (PP/EPDM, HDPE/TPU, PMMA/PEBA), achieving 200-400% increases in toughness and elongation while maintaining strength, stiffness, and transparency through controlled nanofibril formation (50-150nm) and selective crosslinking mechanisms.</p>
+                    <div class="impact">Breakthrough Impact: Enhanced mechanical performance without trade-offs</div>
+                </div>
+                <div class="research-card">
+                    <img src="images/aerogel fiber.jpeg" alt="Research preview" style="width: 100%; height: 300px; object-fit: contain; border-radius: 10px; margin-bottom: 1rem;">
+                    <h3>Advanced Aerogel Fiber Systems</h3>
+                    <p>Engineered bio-templated aerogel fibers through gel-spinning and dual-crosslinking strategies, creating hierarchical CNF-TPU-silica structures with thermal conductivity as low as 0.024 W·m⁻¹·k⁻¹ and 294% increase in tensile strength, demonstrating exceptional durability and shape recovery capabilities.</p>
+                    <div class="impact">Innovation: Sustainable high-performance insulation for extreme environments</div>
+                </div>
+
+                <div class="research-card">
+                    <img src="images/Polymer-CNT.png" alt="Research preview" style="width: 100%; height: 300px; object-fit: contain; border-radius: 10px; margin-bottom: 1rem;">
+                    <h3>Thermally/Electrically Conductive Polymer/CNT Nanocomposites</h3>
+                    <p>Developed a hybrid approach confining carbon nanotubes within nanofibrillated EPDM rubber networks, reducing electrical percolation threshold from 1.5 to 0.25 wt% while simultaneously enhancing crystallization behavior and mechanical properties for flexible electronics applications.</p>
+                    <div class="impact">Industry Application: Next-generation flexible electrostatic discharge materials</div>
+                </div>
+                <div class="research-card">
+                    <img src="images/Polymer Degradation.png" alt="Research preview" style="width: 100%; height: 250px; object-fit: contain; border-radius: 10px; margin-bottom: 1rem;">
+                    <h3>Polymer Thermo-oxidative Degradation</h3>
+                    <p>Systematically investigated active degradation mechanisms during HDPE sintering, identifying two distinct regimes dominated by branching versus chain scission, revealing how oxygen concentration controls pore evolution from surface relaxation to accelerated morphological changes.</p>
+                    <div class="impact">Process Control: Preventing degradation in polymer manufacturing</div>
+                </div>
+                <div class="research-card">
+                    <img src="images/Pore structure.png" alt="Research preview" style="width: 100%; height: 300px; object-fit: contain; border-radius: 10px; margin-bottom: 1rem;">
+                    <h3>Pore Structure Evolution during Polymer Sintering</h3>
+                    <p>Integrating deep learning, reinforcement learning, and neural implicit representations to accelerate materials design, from topology-targeted particle packing to spatiotemporal pore structure prediction.</p>
+                    <div class="impact">Manufacturing Insight: Predictive control for additive manufacturing processes</div>
+                </div>
+                <div class="research-card">
+                    <img src="images/Foam.jpg" alt="Research preview" style="width: 100%; height: 250px; object-fit: contain; border-radius: 10px; margin-bottom: 1rem;">
+                    <h3>Microcellular Plastics with Enhanced Cell Uniformity and Finer Cell Size</h3>
+                    <p>Utilized in-situ rubber nanofibrillation to dramatically improve foaming ability of polyolefins, achieving decreased cell size and increased cell density through interconnected nanofibrillar networks that stabilize cell nucleation and growth during expansion.</p>
+                    <div class="impact">Processing Innovation: Superior foam quality for lightweight applications</div>
+                </div>
+
+                <div class="research-card">
+                    <img src="images/Mxene.png" alt="Research preview" style="width: 100%; height: 250px; object-fit: contain; border-radius: 10px; margin-bottom: 1rem;">
+                    <h3>Foamed Titanium Carbonitride MXene Films for EMI Shielding</h3>
+                    <p>Compared hydrazine versus thermal reduction methods for creating highly porous Ti₃CNTₓ MXene films (~74% porosity), achieving unprecedented EMI shielding effectiveness of 118.4 dB through controlled chemistry and morphology optimization.</p>
+                    <div class="impact">Record Performance: World's highest EMI shielding in synthetic materials</div>
+                </div>
+                <div class="research-card">
+                    <img src="images/Oxygen Transmission.jpeg" alt="Research preview" style="width: 100%; height: 250px; object-fit: contain; border-radius: 10px; margin-bottom: 1rem;">
+                    <h3>Enhanced Oxygen Barrier with Morphological and Interfacial Engineering</h3>
+                    <p>Developed specialized crosslinking methodologies including silane/moisture and diisocyanate crosslinking, optimizing nanoscale morphology control (50-150nm) for applications from packaging to EMI shielding.</p>
+                    <div class="impact">Sustainable Packaging: Extended shelf life with maintained recyclability</div>
+                </div>
+                <div class="research-card">
+                    <img src="images/RSA Algorithm.png" alt="Research preview" style="width: 100%; height: 250px; object-fit: contain; border-radius: 10px; margin-bottom: 1rem;">
+                    <h3>Random Particle Packing Generator with Tunable Topology </h3>
+                    <p>Developed a Random Sequential Addition algorithm for generating non-spherical particle packings with controllable connectivity, shape, and surface roughness, enabling systematic study of how particle-particle contacts influence sintering and mechanical properties.</p>
+                    <div class="impact">Computational Tool: Bridging simulation and experiment in materials designs</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Gallery Section -->
+    <section id="research-gallery">
+        <div class="container">
+            <h2 class="section-title">Research Gallery</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                A visual collection showcasing key moments, equipment, and results from my research journey in advanced materials science and polymer engineering.
+            </p>
+            <div class="gallery-grid">
+                <!-- Research Gallery Item 1 -->
+                <div class="gallery-item" onclick="openModal('research1')">
+                    <div class="gallery-image-container">
+                        <img src="Gallery/Rheometer.jpg" 
+                            alt="Rheometer" 
+                            class="gallery-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">🔬</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Gallery Item 2 -->
+                <div class="gallery-item" onclick="openModal('research2')">
+                    <div class="gallery-image-container">
+                        <img src="Gallery/DMA.jpeg" 
+                            alt="DMA Equipment" 
+                            class="gallery-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">⚗️</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Gallery Item 3 -->
+                <div class="gallery-item" onclick="openModal('research3')">
+                    <div class="gallery-image-container">
+                        <img src="Gallery/Twin screw extruder.jpg" 
+                            alt="Twin Screw Extruder" 
+                            class="gallery-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">🧪</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Gallery Item 4 -->
+                <div class="gallery-item" onclick="openModal('research4')">
+                    <div class="gallery-image-container">
+                        <video class="gallery-video" controls preload="metadata" muted>
+                            <source src="Gallery/Stress whitening.mov" type="video/quicktime">
+                            <source src="Gallery/Stress whitening.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">📊</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Gallery Item 5 -->
+                <div class="gallery-item" onclick="openModal('research5')">
+                    <div class="gallery-image-container">
+                        <img src="Gallery/Screw.jpg" 
+                            alt="Extruder Screw" 
+                            class="gallery-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">🔍</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Gallery Item 6 -->
+                <div class="gallery-item" onclick="openModal('research6')">
+                    <div class="gallery-image-container">
+                        <img src="Gallery/Cold tensile.jpg" 
+                            alt="Cold Tensile Testing" 
+                            class="gallery-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">⚙️</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Gallery Item 7 -->
+                <div class="gallery-item" onclick="openModal('research7')">
+                    <div class="gallery-image-container">
+                        <video class="gallery-video" controls preload="metadata" muted>
+                            <source src="Gallery/EPDM-MA grafting.mov" type="video/quicktime">
+                            <source src="Gallery/EPDM-MA grafting.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">🧬</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Gallery Item 8 -->
+                <div class="gallery-item" onclick="openModal('research8')">
+                    <div class="gallery-image-container">
+                        <img src="Gallery/Crazing-pre cracked.jpg" 
+                            alt="Crazing Analysis" 
+                            class="gallery-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">📈</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Gallery Item 9 -->
+                <div class="gallery-item" onclick="openModal('research9')">
+                    <div class="gallery-image-container">
+                        <img src="Gallery/Optical Microscopy.jpg" 
+                            alt="Optical Microscopy" 
+                            class="gallery-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">🔬</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Research Gallery Item 10 -->
+                <div class="gallery-item" onclick="openModal('research10')">
+                    <div class="gallery-image-container">
+                        <img src="Gallery/DSC.jpeg" 
+                            alt="DSC Equipment" 
+                            class="gallery-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">📊</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Gallery Section -->
+    <section id="personal-gallery">
+        <div class="container">
+            <h2 class="section-title">Personal Gallery</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Personal moments, travels, hobbies, and life experiences that shape who I am beyond the laboratory.
+            </p>
+            <div class="gallery-grid">
+                <!-- Personal Gallery Item 1 -->
+                <div class="gallery-item" onclick="openModal('personal1')">
+                    <div class="gallery-image-container">
+                        <img src="Personal/Defense Party.jpeg" 
+                            alt="Personal Photo 1" 
+                            class="gallery-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">📸</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Gallery Item 2 -->
+                <div class="gallery-item" onclick="openModal('personal2')">
+                    <div class="gallery-image-container">
+                        <img src="Personal/Maryam's convocation.jpeg" 
+                            alt="Personal Photo 2" 
+                            class="gallery-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">🌟</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Gallery Item 3 -->
+                <div class="gallery-item" onclick="openModal('personal3')">
+                    <div class="gallery-image-container">
+                        <img src="Personal/Saadman's convocation.jpeg" 
+                            alt="Personal Photo 3" 
+                            class="gallery-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">🎨</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Gallery Item 4 -->
+                <div class="gallery-item" onclick="openModal('personal4')">
+                    <div class="gallery-image-container">
+                        <img src="Personal/Transferring LN2.jpeg" 
+                            alt="Personal Photo 4" 
+                            class="gallery-image"
+                            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="gallery-placeholder" style="display: none;">
+                            <span class="gallery-placeholder-icon">🏔️</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Study Notes Section -->
+    <section id="notes">
+        <div class="container">
+            <h2 class="section-title">Notes & Concepts</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                A selected collection of my handwritten notes, insights, and conceptual frameworks across materials science and AI applications.
+            </p>
+            <div class="notes-container">
+                <!-- Note 1 -->
+                <div class="note-card" onclick="openModal('note1')">
+                    <div class="note-image-container">
+                        <img src="Notes/(Linear Algebra) 4 subspaces/page-01.jpg" 
+                             alt="Four Subspaces of Matrices" 
+                             class="note-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="note-placeholder" style="display: none;">
+                            <span class="note-placeholder-icon">📐</span>
+                            <span class="note-placeholder-title">Four Subspaces of Matrices</span>
+                        </div>
+                        <div class="note-title-overlay">
+                            <h3>Four Subspaces of Matrices (Linear Algebra)</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Note 2 -->
+                <div class="note-card" onclick="openModal('note2')">
+                    <div class="note-image-container">
+                        <img src="Notes/(Linear Algebra) SVD/page-01.jpg" 
+                             alt="Singular Value Decomposition" 
+                             class="note-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="note-placeholder" style="display: none;">
+                            <span class="note-placeholder-icon">🔢</span>
+                            <span class="note-placeholder-title">Singular Value Decomposition</span>
+                        </div>
+                        <div class="note-title-overlay">
+                            <h3>Singular Value Decomposition (Linear Algebra)</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Note 3 -->
+                <div class="note-card" onclick="openModal('note3')">
+                    <div class="note-image-container">
+                        <img src="Notes/(Linear Algebra) Derivative/page-01.jpg" 
+                             alt="Derivative as a Linear Transformation" 
+                             class="note-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="note-placeholder" style="display: none;">
+                            <span class="note-placeholder-icon">∂</span>
+                            <span class="note-placeholder-title">Derivative as Linear Transformation</span>
+                        </div>
+                        <div class="note-title-overlay">
+                            <h3>Derivative as a Linear Transformation (Linear Algebra)</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Note 4 -->
+                <div class="note-card" onclick="openModal('note4')">
+                    <div class="note-image-container">
+                        <img src="Notes/Basics of Gradient Descent/page-01.jpg" 
+                             alt="Basics of Gradient Descent" 
+                             class="note-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="note-placeholder" style="display: none;">
+                            <span class="note-placeholder-icon">∇</span>
+                            <span class="note-placeholder-title">Gradient Descent</span>
+                        </div>
+                        <div class="note-title-overlay">
+                            <h3>Basics of Gradient Descent</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Note 5 -->
+                <div class="note-card" onclick="openModal('note5')">
+                    <div class="note-image-container">
+                        <img src="Notes/Intro to Group Theory/page-01.jpg" 
+                             alt="Intro to Group Theory" 
+                             class="note-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="note-placeholder" style="display: none;">
+                            <span class="note-placeholder-icon">∞</span>
+                            <span class="note-placeholder-title">Group Theory</span>
+                        </div>
+                        <div class="note-title-overlay">
+                            <h3>Intro to Group Theory</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Note 6 -->
+                <div class="note-card" onclick="openModal('note6')">
+                    <div class="note-image-container">
+                        <img src="Notes/Fundamentals of Reinforcement Learning/page-02.jpg" 
+                             alt="Fundamentals of Reinforcement Learning" 
+                             class="note-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="note-placeholder" style="display: none;">
+                            <span class="note-placeholder-icon">🤖</span>
+                            <span class="note-placeholder-title">Reinforcement Learning</span>
+                        </div>
+                        <div class="note-title-overlay">
+                            <h3>Fundamentals of Reinforcement Learning</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Note 7 -->
+                <div class="note-card" onclick="openModal('note7')">
+                    <div class="note-image-container">
+                        <img src="Notes/Fundamentals of Statistical Mechanics/page-13.jpg" 
+                             alt="Fundamentals of Statistical Mechanics" 
+                             class="note-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="note-placeholder" style="display: none;">
+                            <span class="note-placeholder-icon">📊</span>
+                            <span class="note-placeholder-title">Statistical Mechanics</span>
+                        </div>
+                        <div class="note-title-overlay">
+                            <h3>Fundamentals of Statistical Mechanics</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Note 8 -->
+                <div class="note-card" onclick="openModal('note8')">
+                    <div class="note-image-container">
+                        <img src="Notes/Kernel Trick/page-02.jpg" 
+                             alt="The Kernel Trick and Mercer's Theorem" 
+                             class="note-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="note-placeholder" style="display: none;">
+                            <span class="note-placeholder-icon">🔮</span>
+                            <span class="note-placeholder-title">Kernel Trick</span>
+                        </div>
+                        <div class="note-title-overlay">
+                            <h3>The Kernel Trick and Mercer's Theorem</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Note 9 -->
+                <div class="note-card" onclick="openModal('note9')">
+                    <div class="note-image-container">
+                        <img src="Notes/TRPO Algorithm/page-01.png" 
+                             alt="The origin of the TRPO algorithm" 
+                             class="note-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="note-placeholder" style="display: none;">
+                            <span class="note-placeholder-icon">🎯</span>
+                            <span class="note-placeholder-title">TRPO Algorithm</span>
+                        </div>
+                        <div class="note-title-overlay">
+                            <h3>The origin of the TRPO algorithm</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Note 10 -->
+                <div class="note-card" onclick="openModal('note10')">
+                    <div class="note-image-container">
+                        <img src="Notes/Latent Variable Modeling/page-02.jpg" 
+                             alt="Latent Variable Modelling for Generative AI" 
+                             class="note-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="note-placeholder" style="display: none;">
+                            <span class="note-placeholder-icon">🧬</span>
+                            <span class="note-placeholder-title">Latent Variable Modelling</span>
+                        </div>
+                        <div class="note-title-overlay">
+                            <h3>Latent Variable Modelling for Generative AI</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Note 11 -->
+                <div class="note-card" onclick="openModal('note11')">
+                    <div class="note-image-container">
+                        <img src="Notes/Meta RL/page-02.jpg" 
+                             alt="Meta-RL via Partially Observable MDP" 
+                             class="note-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="note-placeholder" style="display: none;">
+                            <span class="note-placeholder-icon">🧠</span>
+                            <span class="note-placeholder-title">Meta-RL via POMDP</span>
+                        </div>
+                        <div class="note-title-overlay">
+                            <h3>Meta-RL via Partially Observable MDP (POMDP)</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Note 12 -->
+                <div class="note-card" onclick="openModal('note12')">
+                    <div class="note-image-container">
+                        <img src="Notes/Legrange Method/page-01.jpg" 
+                             alt="Lagrange Multiplier and Optimization Duality" 
+                             class="note-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="note-placeholder" style="display: none;">
+                            <span class="note-placeholder-icon">λ</span>
+                            <span class="note-placeholder-title">Lagrange Multiplier</span>
+                        </div>
+                        <div class="note-title-overlay">
+                            <h3>Lagrange Multiplier and Optimization Duality</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Note 13 -->
+                <div class="note-card" onclick="openModal('note13')">
+                    <div class="note-image-container">
+                        <img src="Notes/Quantum Physics/page-01.jpg" 
+                             alt="Derivation of Shrodinger's Equation for Hydrogen Atom" 
+                             class="note-image"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="note-placeholder" style="display: none;">
+                            <span class="note-placeholder-icon">λ</span>
+                            <span class="note-placeholder-title">Lagrange Multiplier</span>
+                        </div>
+                        <div class="note-title-overlay">
+                            <h3>Derivation of Shrodinger's Equation for Hydrogen Atom</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Matrix -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Technical Expertise</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>🧪 Materials Characterization</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">SEM</span>
+                        <span class="skill-tag">DSC</span>
+                        <span class="skill-tag">DMA</span>
+                        <span class="skill-tag">TGA</span>
+                        <span class="skill-tag">Rheology</span>
+                        <span class="skill-tag">XRD</span>
+                        <span class="skill-tag">FTIR</span>
+                        <span class="skill-tag">NMR</span>
+                        <span class="skill-tag">XPS</span>
+                        <span class="skill-tag">AFM</span>
+                        <span class="skill-tag">BET</span>
+                        <span class="skill-tag">Mechanical Testing</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>⚙️ Processing Technologies</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Extrusion</span>
+                        <span class="skill-tag">Injection Molding</span>
+                        <span class="skill-tag">Electrospinning</span>
+                        <span class="skill-tag">Spun-bonding</span>
+                        <span class="skill-tag">3D Printing</span>
+                        <span class="skill-tag">Gel Spinning</span>
+                        <span class="skill-tag">Reactive Processing</span>
+                        <span class="skill-tag">Foaming</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>🤖 AI & Programming</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">PyTorch</span>
+                        <span class="skill-tag">TensorFlow</span>
+                        <span class="skill-tag">Graph Neural Networks</span>
+                        <span class="skill-tag">Reinforcement Learning</span>
+                        <span class="skill-tag">Neural Fields</span>
+                        <span class="skill-tag">MATLAB</span>
+                        <span class="skill-tag">C++</span>
+                        <span class="skill-tag">R</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>🔬 Research Specializations</h3>
+                    <div class="skill-list">
+                        <span class="skill-tag">Polymer Synthesis</span>
+                        <span class="skill-tag">Nanocomposites</span>
+                        <span class="skill-tag">Interface Engineering</span>
+                        <span class="skill-tag">Quality Control</span>
+                        <span class="skill-tag">Process Modeling</span>
+                        <span class="skill-tag">Statistical Analysis</span>
+                        <span class="skill-tag">Materials Design</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Preview -->
+    <section id="publications">
+        <div class="container">
+            <h2 class="section-title">Recent Publications</h2>
+            <div class="publication-item">
+                <h4>Tailoring Interfacial, Rheological, and Energy Absorption Properties of in-situ Nanofibrillated EPDM for Enhanced Toughness in Polypropylene Composites</h4>
+                <div class="journal">ACS Applied Polymer Materials, vol. 7, No. 4, Feb. 2025</div>
+                <div class="authors">A. Salehi, M. Kheradmandkeysomi, R. Rahmati, S. S. Rahman, M. Fashandi, C. B. Park</div>
+            </div>
+            <div class="publication-item">
+                <h4>Polypropylene Nanocomposites Incorporating CNT-embedded in-situ Nanofibrillated EPDM as Conductive Pathways</h4>
+                <div class="journal">ACS Applied Nano Materials, vol. 8, No. 8, Feb. 2025</div>
+                <div class="authors">A. Salehi, R. Rahmati, M. Kheradmandkeysomi, H. Omranpour, M. Fashandi, L. H. Mark, C. B. Park</div>
+            </div>
+            <div class="publication-item">
+                <h4>Empowering PLA Bioplastics: Elevating Applications Through Groundbreaking Eco-Innovative Techniques</h4>
+                <div class="journal">Chemical Engineering Journal, vol. 496, Sep. 2024</div>
+                <div class="authors">A. R. Monfared, A. V. Tuccitto, H. Omranpour, S. S. Rahman, A. Zaoui, A. Salehi, S. Rezaei, R. Rahmati, V. Lotocki, D. S. Seferos, C. B. Park</div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://scholar.google.com/citations?hl=en&user=hegPdc0AAAAJ&view_op=list_works&sortby=pubdate" 
+                   class="btn btn-primary" target="_blank">View All 15+ Publications</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Projects -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">AI & Machine Learning Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Topology-Targeted Materials Design via Deep RL</h3>
+                    <p>Multi-agent reinforcement learning framework for generating custom particulate packings with precisely controlled topological properties, enabling unprecedented control over microstructural features.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Deep RL</span>
+                        <span class="tech-tag">Multi-Agent Systems</span>
+                        <span class="tech-tag">Materials Design</span>
+                        <span class="tech-tag">PyTorch</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>GraPES: Graph-based Particle Equilibrium Simulator</h3>
+                    <p>Graph neural network framework with adaptive uncertainty quantification for predicting particle packing equilibrium positions using Monte Carlo Dropout and physics validation.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Graph Neural Networks</span>
+                        <span class="tech-tag">Uncertainty Quantification</span>
+                        <span class="tech-tag">Physics-Informed ML</span>
+                        <span class="tech-tag">Active Learning</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Neural Implicit Pore Structure Evolution</h3>
+                    <p>Predictive models using neural implicit representations to capture spatiotemporal pore structure evolution in granular media from in-situ 4D X-ray tomography data.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Neural Fields</span>
+                        <span class="tech-tag">Physics-Informed NNs</span>
+                        <span class="tech-tag">Operator Learning</span>
+                        <span class="tech-tag">4D Imaging</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Real-Time Face Mask Detection System</h3>
+                    <p>Developed an AI-driven monitoring system for COVID-19 mask compliance using deep learning to detect and classify mask-wearing states (properly worn, improperly worn, no mask) in real-time video streams, contributing to public health safety measures.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Computer Vision</span>
+                        <span class="tech-tag">Deep Learning</span>
+                        <span class="tech-tag">Real-time Detection</span>
+                        <span class="tech-tag">Public Health AI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <h3>Email</h3>
+                    <p>a.salehi@mail.utoronto.ca</p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🔗</div>
+                    <h3>LinkedIn</h3>
+                    <p><a href="https://www.linkedin.com/in/amirmehdi-salehi" target="_blank">Connect with me</a></p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📚</div>
+                    <h3>Google Scholar</h3>
+                    <p><a href="https://scholar.google.com/citations?hl=en&user=hegPdc0AAAAJ&view_op=list_works&sortby=pubdate" target="_blank">View Publications</a></p>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">💻</div>
+                    <h3>GitHub</h3>
+                    <p><a href="https://github.com/AmirmehdiSalehi" target="_blank">Explore Code</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Gallery Modals (samples) -->
+    <div id="research1" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Rheometer Equipment</h2>
+            <img src="Gallery/Rheometer.jpg" alt="Rheometer" style="width: 100%; border-radius: 10px; margin: 1rem 0;">
+            <p>Advanced rheological analysis equipment used for characterizing viscoelastic properties of polymer nanocomposites and melts.</p>
+        </div>
+    </div>
+
+    <div id="research2" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Dynamic Mechanical Analysis (DMA)</h2>
+            <img src="Gallery/DMA.jpeg" alt="DMA Equipment" style="width: 100%; border-radius: 10px; margin: 1rem 0;">
+            <p>DMA equipment for measuring the mechanical properties of polymers as a function of temperature, frequency, and time.</p>
+        </div>
+    </div>
+
+    <!-- Personal Gallery Modals (samples) -->
+    <div id="personal1" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Personal Moment</h2>
+            <p>A glimpse into my life outside the laboratory.</p>
+        </div>
+    </div>
+
+    <div id="personal2" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Personal Experience</h2>
+            <p>Capturing moments that inspire my scientific journey.</p>
+        </div>
+    </div>
+
+    <!-- Study Notes Modals -->
+    <div id="note1" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Four Subspaces of Matrices</h2>
+        </div>
+    </div>
+
+    <div id="note2" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Singular Value Decomposition</h2>
+        </div>
+    </div>
+
+    <div id="note3" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Derivative as a Linear Transformation</h2>
+        </div>
+    </div>
+
+    <div id="note4" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Basics of Gradient Descent</h2>
+        </div>
+    </div>
+
+    <div id="note5" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Intro to Group Theory</h2>
+        </div>
+    </div>
+    
+    <div id="note6" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Fundamentals of Reinforcement Learning</h2>
+        </div>
+    </div>
+
+    <div id="note7" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Fundamentals of Statistical Mechanics</h2>
+        </div>
+    </div>
+
+    <div id="note8" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>The Kernel Trick and Mercer's Theorem</h2>
+        </div>
+    </div>
+
+    <div id="note9" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>The origin of the TRPO algorithm</h2>
+            <img src="Notes/TRPO Algorithm/page-01.png" alt="Complete handwritten notes" 
+                style="width: 100%; border-radius: 10px; margin: 1rem 0; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+        </div>
+    </div>
+
+    <div id="note10" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Latent Variable Modelling for Generative AI</h2>
+        </div>
+    </div>
+
+    <div id="note11" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Meta-RL via Partially Observable MDP (POMDP)</h2>
+        </div>
+    </div>
+
+    <div id="note12" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Lagrange Multiplier and Optimization Duality</h2>
+        </div>
+    </div>
+
+    <div id="note13" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Derivation of Shrodinger's Equation for Hydrogen Atom</h2>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Amirmehdi(Amir) Salehi, Ph.D. Advancing the Future of Materials Science through AI.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards and sections
+        document.querySelectorAll('.research-card, .skill-category, .publication-item, .project-card, .contact-item, .gallery-item, .note-card').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Modal functionality
+        window.openModal = function(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        window.closeModal = function(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modals when clicking the X or outside the modal
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('close')) {
+                event.target.closest('.modal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close modals with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const openModal = document.querySelector('.modal[style*="block"]');
+                if (openModal) {
+                    openModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+
+        // Add fade-in animation for gallery and notes items
+        const galleryObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe gallery and notes items
+        document.querySelectorAll('.gallery-item, .note-card').forEach(el => {
+            galleryObserver.observe(el);
+        });
+
+        function quickLoad(modalId, folderName, count_start, count_finish) {
+            setTimeout(function() {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    const title = modal.querySelector('h2');
+                    if (title) {
+                        let html = '<div style="display: grid; gap: 1rem; margin: 1rem 0;">';
+                        for (let i = count_start; i <= count_finish; i++) {
+                            const paddedNumber = i.toString().padStart(2, '0');
+                            html += `<img src="Notes/${folderName}/page-${paddedNumber}.jpg" 
+                                        alt="Note Page ${i}" 
+                                        style="width: 100%; border-radius: 10px;"
+                                        onerror="this.style.display='none'">`;
+                        }
+                        html += '</div>';
+                        title.insertAdjacentHTML('afterend', html);
+                    }
+                }
+            }, 100)
+        }
+
+        // Load notes content
+        quickLoad('note1', '(Linear Algebra) 4 subspaces', 1, 4);
+        quickLoad('note2', '(Linear Algebra) SVD', 1, 11);
+        quickLoad('note3', '(Linear Algebra) Derivative', 1, 3);
+        quickLoad('note4', 'Basics of Gradient Descent', 1, 5);
+        quickLoad('note5', 'Intro to Group Theory', 1, 13);
+        quickLoad('note6', 'Fundamentals of Reinforcement Learning', 2, 49);
+        quickLoad('note7', 'Fundamentals of Statistical Mechanics', 13, 76);
+        quickLoad('note8', 'Kernel Trick', 2, 11);
+        quickLoad('note10', 'Latent Variable Modeling', 2, 7);
+        quickLoad('note11', 'Meta RL', 2, 6);
+        quickLoad('note12', 'Legrange Method', 1, 19);
+        quickLoad('note13', 'Quantum Physics', 1, 23);
+
+        // Video error handling
+        document.querySelectorAll('video').forEach(video => {
+            video.addEventListener('error', function() {
+                const placeholder = this.nextElementSibling;
+                if (placeholder && placeholder.classList.contains('gallery-placeholder')) {
+                    this.style.display = 'none';
+                    placeholder.style.display = 'flex';
+                }
+            });
+            
+            // Try to load video
+            video.addEventListener('loadstart', function() {
+                console.log('Video loading started:', this.src);
+            });
+        });
+
+        // Image error handling for personal gallery (additional debugging)
+        document.querySelectorAll('.gallery-image').forEach(img => {
+            img.addEventListener('load', function() {
+                console.log('Image loaded successfully:', this.src);
+            });
+            
+            img.addEventListener('error', function() {
+                console.log('Image failed to load:', this.src);
+                const placeholder = this.nextElementSibling;
+                if (placeholder && placeholder.classList.contains('gallery-placeholder')) {
+                    this.style.display = 'none';
+                    placeholder.style.display = 'flex';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

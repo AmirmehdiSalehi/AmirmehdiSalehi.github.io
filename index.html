@@ -177,97 +177,6 @@
             color: #333;
         }
 
-        /* Interactive Research Gallery
-        .gallery-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .gallery-item {
-            position: relative;
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .gallery-image {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 3rem;
-            position: relative;
-            overflow: hidden;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        .gallery-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-        }
-
-        .gallery-image .placeholder-icon {
-            font-size: 3rem;
-            z-index: 2;
-        } */
-
-        .modal-image {
-            width: 100%;
-            max-height: 400px;
-            object-fit: contain;
-            border-radius: 10px;
-            margin: 1rem 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
-        .document-link {
-            display: inline-block;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            text-decoration: none;
-            margin: 0.5rem 0.5rem 0.5rem 0;
-            transition: transform 0.3s;
-        }
-
-        .document-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        .file-upload-section {
-            background: #f8f9ff;
-            padding: 2rem;
-            border-radius: 15px;
-            margin: 2rem 0;
-            border: 2px dashed #667eea;
-            text-align: center;
-        }
-
-        .upload-instructions {
-            color: #666;
-            font-style: italic;
-            margin-top: 1rem;
-        }
-
         /* .gallery-image::before {
             content: '';
             position: absolute;
@@ -459,23 +368,6 @@
         .note-placeholder-title {
             font-size: 1rem;
             opacity: 0.9;
-        }
-
-        .handwritten-style {
-            font-family: 'Kalam', cursive;
-            background: linear-gradient(
-                to bottom,
-                transparent 0px,
-                transparent 24px,
-                #ddd 24px,
-                #ddd 26px,
-                transparent 26px
-            );
-            background-size: 100% 26px;
-            line-height: 26px;
-            padding: 1rem;
-            border-radius: 10px;
-            margin: 1rem 0;
         }
 
         @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
@@ -1417,135 +1309,6 @@
     </section>
 
     <!-- Gallery Modals -->
-    <div id="modal1" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Nanofibrillated EPDM Structures</h2>
-            <!-- Replace with your actual SEM images -->
-            <!-- <img src="images/sem-nanofibrils-large.jpg" alt="Detailed SEM Analysis" class="modal-image"> -->
-            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem; margin: 1rem 0;">🔬</div>
-            <p><strong>Research Highlight:</strong> This research demonstrates the successful in-situ nanofibrillation of EPDM rubber within a polypropylene matrix using spunbond technology.</p>
-            <h3>Key Findings:</h3>
-            <ul>
-                <li>Achieved nanofibril diameters ranging from 50-150 nm</li>
-                <li>Interconnected network formation at ~3 wt% loading</li>
-                <li>Significant enhancement in β-phase content up to ~65%</li>
-                <li>Improved interfacial adhesion through chemical modification</li>
-            </ul>
-            <h3>Methodology:</h3>
-            <p>The process involves grafting vinyl trimethoxy silane (VTMS) onto EPDM chains, followed by in-situ fibrillation using spunbond technology and subsequent crosslinking with moisture to preserve the fibrillar morphology.</p>
-            
-            <!-- Document Downloads Section -->
-            <h3>📄 Related Documents:</h3>
-            <div>
-                <!-- <a href="documents/sem-analysis-report.pdf" class="document-link" target="_blank">📊 SEM Analysis Report</a> -->
-                <!-- <a href="documents/processing-parameters.pdf" class="document-link" target="_blank">⚙️ Processing Parameters</a> -->
-                <!-- <a href="documents/publication-draft.pdf" class="document-link" target="_blank">📄 Publication Draft</a> -->
-                <p style="color: #666; font-style: italic;">Upload your documents to the 'documents' folder and uncomment the links above</p>
-            </div>
-            
-            <div class="handwritten-style">
-                <p><em>Personal Note: The breakthrough moment came when we realized that controlling the crosslinking kinetics was key to preserving the nanofibrillar structure during processing. The balance between chain mobility and network formation is crucial.</em></p>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal2" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Mechanical Property Enhancement</h2>
-            <!-- Replace with your actual stress-strain graphs -->
-            <!-- <img src="images/stress-strain-comparison.png" alt="Stress-Strain Curves Comparison" class="modal-image"> -->
-            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem; margin: 1rem 0;">📊</div>
-            <h3>Remarkable Improvements Achieved:</h3>
-            <ul>
-                <li><strong>Elongation at Break:</strong> +400% at -10°C, +250% at room temperature</li>
-                <li><strong>Impact Toughness:</strong> +200% improvement</li>
-                <li><strong>Tensile Toughness:</strong> 200-400% increase across different systems</li>
-                <li><strong>Brittle-to-Ductile Transition:</strong> At only 3 wt% nanofibril content</li>
-            </ul>
-            <h3>Toughening Mechanisms:</h3>
-            <p>The superior mechanical performance results from multiple synergistic mechanisms including stress transfer through the nanofibrillar network, crack deflection and bridging, and enhanced energy dissipation through plastic deformation of the rubber phase.</p>
-            
-            <!-- Document Downloads Section -->
-            <h3>📄 Related Documents:</h3>
-            <div>
-                <!-- <a href="documents/mechanical-testing-data.xlsx" class="document-link" target="_blank">📈 Raw Testing Data</a> -->
-                <!-- <a href="documents/toughening-mechanisms.pdf" class="document-link" target="_blank">🔬 Mechanisms Analysis</a> -->
-                <!-- <a href="documents/comparison-study.pdf" class="document-link" target="_blank">📋 Comparison Study</a> -->
-                <p style="color: #666; font-style: italic;">Upload your Excel files, PDFs, and analysis documents here</p>
-            </div>
-            
-            <div class="handwritten-style">
-                <p><em>Research Insight: The key was achieving the optimal balance between rubber content and mechanical performance. Unlike traditional approaches that require high rubber content (often compromising strength), our nanofibrillar approach achieves exceptional toughening at low loadings.</em></p>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal3" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Thermal & Rheological Analysis</h2>
-            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem; margin: 1rem 0;">🌡️</div>
-            <h3>Crystallization Behavior:</h3>
-            <ul>
-                <li>Enhanced β-phase crystallization in polypropylene</li>
-                <li>Increased crystallization temperature indicating nucleation effects</li>
-                <li>Modified crystal morphology affecting mechanical properties</li>
-            </ul>
-            <h3>Rheological Properties:</h3>
-            <ul>
-                <li>Formation of percolated network evidenced by low-frequency upturn</li>
-                <li>Strain-hardening behavior in extensional flow</li>
-                <li>Temperature-dependent viscoelastic behavior</li>
-            </ul>
-            <div class="handwritten-style">
-                <p><em>Technical Note: The rheological signature clearly shows network formation - the storage modulus plateau at low frequencies is a dead giveaway that we've achieved percolation. This correlates beautifully with the mechanical property improvements.</em></p>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal4" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>CNT-Enhanced Conductivity</h2>
-            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem; margin: 1rem 0;">⚡</div>
-            <h3>Breakthrough Achievement:</h3>
-            <p>Successfully reduced electrical percolation threshold from ~1.5 wt% to 0.25 wt% by confining carbon nanotubes within EPDM nanofibrils.</p>
-            <h3>Key Innovation:</h3>
-            <ul>
-                <li>CNTs are physically confined within the rubbery EPDM phase</li>
-                <li>Fibrillation creates interconnected conductive pathways</li>
-                <li>Dual functionality: electrical conductivity + mechanical toughening</li>
-                <li>Excellent dispersion without chemical functionalization</li>
-            </ul>
-            <div class="handwritten-style">
-                <p><em>Eureka Moment: When we first measured the electrical conductivity, I couldn't believe the percolation threshold was so low. The confined geometry creates incredibly efficient conductive networks - much better than randomly dispersed CNTs.</em></p>
-            </div>
-        </div>
-    </div>
-
-    <div id="modal5" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2>Crosslinking Chemistry</h2>
-            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 300px; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 4rem; margin: 1rem 0;">🧪</div>
-            <h3>Silane Crosslinking Pathway:</h3>
-            <p>Vinyl trimethoxy silane (VTMS) undergoes hydrolysis and condensation reactions to form Si-O-Si crosslinks, preserving the nanofibrillar morphology.</p>
-            <h3>Diisocyanate Chain Extension:</h3>
-            <p>Simultaneous crosslinking of TPU and chain extension of PLA using tailored diisocyanate chemistry creates superior mechanical properties while maintaining optical clarity.</p>
-            <h3>Process Control:</h3>
-            <ul>
-                <li>Moisture-activated crosslinking for ambient processing</li>
-                <li>Temperature-controlled reaction kinetics</li>
-                <li>Balance between gelation and flow properties</li>
-            </ul>
-            <div class="handwritten-style">
-                <p><em>Chemistry Insight: The beauty of this approach is the orthogonal reactions - we can control crosslinking and chain extension independently, allowing for precise property tuning.</em></p>
-            </div>
-        </div>
-    </div>
-
     <div id="modal6" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -1568,7 +1331,7 @@
         </div>
     </div>
 
-        <!-- Study Notes Modals -->
+    <!-- Study Notes Modals -->
     <div id="note1" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -1577,8 +1340,6 @@
         </div>
     </div>
 
-
-    <!-- Study Notes Modals -->
     <div id="note2" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
